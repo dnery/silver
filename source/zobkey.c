@@ -1,6 +1,7 @@
 #include <stdlib.h>
 
 #include "afx/stdafx.h"
+#include "afx/zobkey.h"
 
 U64 zobrist_U64rand() {
 

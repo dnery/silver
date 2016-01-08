@@ -4,7 +4,6 @@
 
 #include <inttypes.h>
 #include <stdlib.h>
-#include <string.h>
 #include <stdio.h>
 
 #include "afx/stdafx.h"
@@ -54,13 +53,19 @@ int main(int argc, char *argv[]) {
 
     fgets(FEN, 1024, stdin);
 
+    /* Engage structures */
     sq0x88_board_init(&board);
     sq0x88_FEN_read(&board, FEN);
 
+    /* Generate and sort moves */
     movegenL(&board);
     algebraic_sort(&board);
+
+    /* Write readable output */
+    drawBoard(&board);
     algebraic_write(&board);
 
+    /* Free allocated memory */
     sq0x88_board_drop(&board);
 
     return 0;

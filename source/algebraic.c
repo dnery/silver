@@ -34,8 +34,8 @@ int redundancy_scan(Board * board, Move * move) {
 
 int sort_scores(const void *a, const void *b) {
 
-    return ((Move *)fl_data(*((INode **)a)))->score -
-           ((Move *)fl_data(*((INode **)b)))->score;
+    return ((Move *)fl_data(*((INode **)b)))->score -
+           ((Move *)fl_data(*((INode **)a)))->score;
 }
 
 int sort_files(const void *a, const void *b) {

@@ -25,16 +25,17 @@ void movegenType_any(Board *board, S8 sq_fr,
     move->ply_count = board->ply_count;
     move->ply_total = board->ply_total;
 
-    move->score = board->eval_data.val_piece[pc_fr];
+    /* Build score */
+    move->score = pc_fr;
 
     /* Bonus for capture */
     if(pc_to != NOPIECE)
-        move->score += 10000 + board->eval_data.val_capts[pc_to] + pc_fr;
+        move->score += 10000 + board->eval_data.val_capts[pc_to];
 
     /* Bonus for EP capture */
     if (pc_fr == PAWN && sq_to == board->ep_square) {
 
-        move->score += 10000 + board->eval_data.val_capts[PAWN] + pc_fr;
+        move->score += 10000 + board->eval_data.val_capts[PAWN];
         move->flags |= MF_EPCAPTURE;
     }
 
