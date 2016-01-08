@@ -1,2 +1,5 @@
 # Internal build files
-/build/*
+build/*
+
+# CLion project files
+.idea/
