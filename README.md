@@ -16,7 +16,7 @@ So far, the engine is capable of generating all legal moves for a certain player
 The implementation is modular enough to easily allow for checkmate/stalemate/draw detection in any end-game scenario, with little more code (it is in fact my next goal). Further on I'll be implementing a search mechanism based on **Alpha-beta search** and **Iterative deepening** and a static evaluation mechanism with hopefully-not-so-obvious heuristics, to improve move scoring and the decision making ability.
 
 ### How it works
-Provide the program with a [*FEN* compliant string](https://en.wikipedia.org/wiki/Forsyth%E2%80%93Edwards_Notation) and it will list all the possible moves for the current player in [algebraic notation](https://en.wikipedia.org/wiki/Algebraic_notation_(chess)), ordered by **score** (best to worst). The scoring mechanism is, so far, simple: It takes into account the moving piece with big bonuses for captures and promotions, varying with piece captured or promoted to. As I said, there's no evaluation mechanism yet, to provide an acceptably precise score for each move.
+Provide the program with a [**FEN** compliant string](https://en.wikipedia.org/wiki/Forsyth%E2%80%93Edwards_Notation) and it will list all the possible moves for the current player in [algebraic notation](https://en.wikipedia.org/wiki/Algebraic_notation_(chess)), ordered by **score** (best to worst), along with a drawn board and the _Zobrist_ hash code for the position. The scoring mechanism is, so far, simple: It takes into account the moving piece with big bonuses for captures and promotions, varying with piece captured or promoted to. As I said, there's no evaluation mechanism yet, to provide an acceptably precise score for each move.
 
 Here's an example input...
 ```
@@ -24,6 +24,21 @@ rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1
 ```
 ...And it's following output
 ```
+    A B C D E F G H
+  *-----------------*
+8 | r n b q k b n r | 8
+7 | p p p p p p p p | 7
+6 | . . . . . . . . | 6
+5 | . . . . . . . . | 5
+4 | . . . . . . . . | 4
+3 | . . . . . . . . | 3
+2 | P P P P P P P P | 2
+1 | R N B Q K B N R | 1
+  *-----------------*
+    A B C D E F G H
+
+Zobrist hash key for position: 8748045942876076066
+
 h3
 h4
 g3

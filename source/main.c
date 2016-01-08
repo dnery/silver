@@ -42,7 +42,7 @@ void drawBoard(Board * board) {
     printf("  *-----------------*\n");
     printf("    A B C D E F G H\n\n");
 
-    printf("Position Zobrist: %" PRIu64 "\n\n", board->zhash_key);
+    printf("Zobrist hash key for position: %" PRIu64 "\n\n", board->zhash_key);
 }
 
 int main(int argc, char *argv[]) {
