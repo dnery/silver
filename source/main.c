@@ -11,62 +11,63 @@
 #include "afx/algebraic.h"
 #include "afx/0x88movegen.h"
 
-void drawBoard(Board * board) {
+void drawBoard(Board * board)
+{
+	/* This is not pretty. I don't give a sh*t. */
 
-    /* This is not pretty. I don't give a sh*t. */
+	char p_array[3][7] = {
+		{'K','Q','B','N','R','P','.'},
+		{'k','q','b','n','r','p','.'},
+		{'.','.','.','.','.','.','.'}
+	};
 
-    char p_array[3][7] = {{'K','Q','B','N','R','P','.'},
-                          {'k','q','b','n','r','p','.'},
-                          {'.','.','.','.','.','.','.'}};
+	printf("\n    A B C D E F G H\n");
+	printf("  *-----------------*\n");
 
+	S8 row = 7;
+	for (; row >= 0; row--) {
 
-    printf("\n    A B C D E F G H\n");
-    printf("  *-----------------*\n");
+		printf("%" PRId8 " | ", row + 1);
 
-    S8 row = 7;
-    for (; row >= 0; row--) {
-        
-        printf("%" PRId8 " | ", row + 1);
+		S8 col = 0;
+		for (; col < 8; col++) {
 
-        S8 col = 0;
-        for (; col < 8; col++) {
+			S8 sq = (S8)sq0x88(row, col);
+			printf("%c ", p_array
+					[board->colors[sq]]
+					[board->pieces[sq]]);
+		}
 
-            S8 sq = (S8)sq0x88(row, col);
+		printf("| %" PRId8 "\n", row + 1);
+	}
 
-            printf("%c ", p_array[board->colors[sq]][board->pieces[sq]]);
-        }
-        
-        printf("| %" PRId8 "\n", row + 1);
-    }
-
-    printf("  *-----------------*\n");
-    printf("    A B C D E F G H\n\n");
-
-    printf("Zobrist hash key for position: %" PRIu64 "\n\n", board->zhash_key);
+	printf("  *-----------------*\n");
+	printf("    A B C D E F G H\n\n");
+	printf("Zobkey for position: %" PRIu64 "\n\n", board->zhash_key);
 }
 
-int main(int argc, char *argv[]) {
+int main(int argc, char *argv[])
+{
+	Board board;
 
-    Board board;
+	char FEN[1024];
 
-    char FEN[1024];
+	fgets(FEN, 1024, stdin);
 
-    fgets(FEN, 1024, stdin);
+	/* Engage structures */
+	sq0x88_board_init(&board);
+	sq0x88_FEN_read(&board, FEN);
 
-    /* Engage structures */
-    sq0x88_board_init(&board);
-    sq0x88_FEN_read(&board, FEN);
+	/* Generate and sort moves */
+	movegenL(&board);
+	algebraic_sort(&board);
 
-    /* Generate and sort moves */
-    movegenL(&board);
-    algebraic_sort(&board);
+	/* Write readable output */
+	drawBoard(&board);
+	algebraic_write(&board);
 
-    /* Write readable output */
-    drawBoard(&board);
-    algebraic_write(&board);
+	/* Free allocated memory */
+	sq0x88_board_drop(&board);
 
-    /* Free allocated memory */
-    sq0x88_board_drop(&board);
-
-    return 0;
+	return 0;
 }

@@ -5,8 +5,6 @@
 
 #include "stdafx.h"
 
-/*---- Macros & useful symbols -----------------------------------------------*/
-
 /* Row macros */
 #define ROW_1 (A1 >> 4)
 #define ROW_2 (A2 >> 4)
@@ -72,8 +70,6 @@
 
 /* Total material on board */
 #define totalMat(board)      ((board)->material[0] + (board)->material[1])
-
-/*---- Operation prototypes (read source file) -------------------------------*/
 
 /* Utils operation prototypes */
 int  coordAfrom0x88(S8 * sq, char * a);
