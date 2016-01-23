@@ -137,12 +137,12 @@ void members_init(Board * board)
 {
 	/* Movegen functions array */
 	void(*movegens[6])(Board *, const void *) = {
-		movegen_k,
-		movegen_q,
-		movegen_b,
-		movegen_n,
-		movegen_r,
-		movegen_p
+		redir_to_k,
+		redir_to_q,
+		redir_to_b,
+		redir_to_n,
+		redir_to_r,
+		redir_to_p
 	};
 
 	int i;
@@ -158,7 +158,7 @@ void members_init(Board * board)
 		newPiece->square = (S8)i;
 		newPiece->color = board->colors[i];
 		newPiece->piece = board->pieces[i];
-		newPiece->move_gen = movegens[board->pieces[i]];
+		newPiece->generate_moves = movegens[board->pieces[i]];
 
 		/* Insert in piece list */
 		l_ins_next(&board->player_pieces, NULL, newPiece);

@@ -21,7 +21,6 @@ void zobrist_init(Zobrist * zob) {
             for (sq_idx = 0; sq_idx < 128; sq_idx++)
                 zob->pcsq[pc_idx][cl_idx][sq_idx] = zobrist_U64rand();
 
-    /* From here on it's pretty obvious */
     zob->color = zobrist_U64rand();
 
     int cs_idx;

@@ -103,10 +103,10 @@ typedef struct S_EvalData {
 /* "Zob Key" structure */
 typedef struct S_Zobrist {
 
-	U64 pcsq[6][2][128];        
-	U64 ep[128];                
-	U64 cs[16];                 
-	U64 color;                  
+	U64 pcsq[6][2][128];
+	U64 ep[128];
+	U64 cs[16];
+	U64 color;
 
 } Zobrist;
 
@@ -160,12 +160,12 @@ typedef struct S_Move {
 /* "Piece" structure */
 typedef struct S_Piece {
 
-	U8 piece;                               /* Corresponding piece */
-	U8 color;                               /* Corresponding color */
+	U8 piece;                                     /* Corresponding piece */
+	U8 color;                                     /* Corresponding color */
 
-	S8 square;                              /* Current location on board */
+	S8 square;                                    /* Location on board */
 
-	void(*move_gen)(Board *, const void *); /* Move generation function */
+	void(*generate_moves)(Board *, const void *); /* Movegen function */
 
 } Piece;
 

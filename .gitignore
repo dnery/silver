@@ -3,3 +3,7 @@ build/
 
 # CLion project files
 .idea/
+
+# Edit files
+*.swp
+*~
