@@ -16,7 +16,7 @@ So far, the engine is capable of generating all legal moves for a certain player
 The implementation is modular enough to easily allow for checkmate/stalemate/draw detection in any end-game scenario, with little more code (it is in fact my next goal). Further on I'll be implementing a search mechanism based on **Alpha-beta search** and **Iterative deepening** and a static evaluation mechanism with hopefully-not-so-obvious heuristics, to improve move scoring and the decision making ability.
 
 ### How it works
-Provide the program with a [**FEN** compliant string](https://en.wikipedia.org/wiki/Forsyth%E2%80%93Edwards_Notation) and it will list all the possible moves for the current player in [algebraic notation](https://en.wikipedia.org/wiki/Algebraic_notation_(chess)), ordered by **score** (best to worst), along with a drawn board and the _Zobrist_ hash code for the position. The scoring mechanism is, so far, simple: It takes into account the moving piece with big bonuses for captures and promotions, varying with piece captured or promoted to. As I said, there's no evaluation mechanism yet, to provide an acceptably precise score for each move.
+Provide the program with a [**FEN** compliant string](https://en.wikipedia.org/wiki/Forsyth%E2%80%93Edwards_Notation) and it will list all the possible moves for the current player in [algebraic notation](https://en.wikipedia.org/wiki/Algebraic_notation_(chess)), ordered by **score** (best to worst), along with a drawn board and the _Zobrist_ hash code for the position. The scoring mechanism is, so far, simple: It takes into account the moving piece with big bonuses for captures and promotions, varying with piece captured or promoted to. As I said, there's no evaluation mechanism yet to provide an acceptably precise score for each move.
 
 Here's an example input...
 ```
@@ -62,9 +62,9 @@ Na3
 ```
 
 ### Building
-I chose CMake for the build to keep it easily scalable and dependency-resolving-friendly. "_OH LOOK HE'S USING CMAKE WHAT A PUSSY!_" - seriously, I don't give a shit. It's too easy and beautiful and portable not to use. F\*ck you. Plus it integrates with CLion. I'm using it. I'm also on Windows. obvious choice.
+I chose CMake for the build to keep it easily scalable and dependency-resolving-friendly. "_OH LOOK HE'S USING CMAKE WHAT A PUSSY!_" - seriously, I don't give a shit. It's too easy and beautiful and portable not to use. F\*ck you. Plus it integrates with CLion. I'm using it. I'm also on Windows. Obvious choice.
 
-As for actually building it, if you're on Windows, I suggest setting up an environment with [CygWin](https://www.cygwin.com/install.html) and [here's a good reason why](http://stackoverflow.com/questions/771756/what-is-the-difference-between-cygwin-and-mingw). If you're ~~~decent~~~ already on Linux/\*NIX (Linux, Mac OSX, CygWin, etc...) you probably already have `make` from `base-devel` or some other base package group, just install CMake with whatever it is your package management utility and you're good to go.
+As for actually building it, if you're on Windows, I suggest setting up an environment with [CygWin](https://www.cygwin.com/install.html) and [here's a good reason why](http://stackoverflow.com/questions/771756/what-is-the-difference-between-cygwin-and-mingw). If you're ~~decent~~ already on Linux/\*NIX (Linux, Mac OSX, CygWin, etc...) you probably already have `make` from `base-devel` or some other base package group, just install CMake with whatever it is your package management utility and you're good to go.
 
 If you want to completely ignore anything I just said, also, [there are pre-compiled binaries available](https://cmake.org/download/) for whatever platform you're on, so you can just chill.
 
