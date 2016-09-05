@@ -1,22 +1,26 @@
-cmake_minimum_required(VERSION 3.3)
+cmake_minimum_required(VERSION 2.8)
 project(ChessEngine)
 
-set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Werror -Wextra")
+set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wall -Wextra")
+
+set(CMAKE_C_FLAGS_DEBUG "-O0 -g -pedantic -Wconversion -Wcast-align -Wunreachable-code -ftrapv")
+
+set(CMAKE_C_FLAGS_RELEASE "-O2 -march=native")
 
 set(SOURCE_FILES
-        source/0x88movegen.c
-        source/afx/0x88movegen.h
-        source/algebraic.c
-        source/afx/algebraic.h
-        source/ilist.c
-        source/afx/ilist.h
-        source/llist.c
-        source/afx/llist.h
-        source/main.c
-        source/sq0x88.c
-        source/afx/sq0x88.h
-        source/afx/stdafx.h
-        source/zobkey.c
-        source/afx/zobkey.h)
+        src/stdafx.h
+        src/0x88movegen.c
+        src/0x88movegen.h
+        src/algebraic.c
+        src/algebraic.h
+        src/ilist.c
+        src/ilist.h
+        src/llist.c
+        src/llist.h
+        src/sq0x88.c
+        src/sq0x88.h
+        src/zobkey.c
+        src/zobkey.h
+        src/main.c)
 
 add_executable(ChessEngine ${SOURCE_FILES})
